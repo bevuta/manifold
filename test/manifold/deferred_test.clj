@@ -3,12 +3,14 @@
   (:require
     [clojure.test :refer :all]
     [manifold.test-utils :refer :all]
+    [manifold.debug :as debug]
     [manifold.deferred :as d]
     [manifold.executor :as ex])
   (:import
     (java.util.concurrent
       CompletableFuture
-      CompletionStage)
+      CompletionStage
+      TimeoutException)
     (manifold.deferred IDeferred)))
 
 (defmacro future' [& body]
@@ -431,3 +433,5 @@
 
     (finally
       (remove-method print-method CompletionStage))))
+
+(instrument-tests-with-dropped-error-detection!)

@@ -611,3 +611,5 @@
     (s/consume (fn [_]) s)
     (bench "put! with consume"
       (s/put! s 1))))
+
+(instrument-tests-with-dropped-error-detection!)
